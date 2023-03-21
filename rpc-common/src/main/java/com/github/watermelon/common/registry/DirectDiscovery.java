@@ -16,6 +16,7 @@ public class DirectDiscovery implements ServiceDiscovery {
 
     @Override
     public String discover(String serviceName) {
+        LOGGER.debug("discovery service {} address: {}", serviceName, serverAddress);
 
         return serverAddress;
     }
