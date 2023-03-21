@@ -28,12 +28,12 @@ public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, RpcResponse response) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, RpcResponse response) {
         this.response = response;
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         LOGGER.error("api caught exception", cause);
         ctx.close();
     }
@@ -47,10 +47,10 @@ public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {
             bootstrap.channel(NioSocketChannel.class);
             bootstrap.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
-                protected void initChannel(SocketChannel channel) throws Exception {
+                protected void initChannel(SocketChannel channel) {
                     ChannelPipeline pipeline = channel.pipeline();
                     pipeline.addLast(new RpcEncoder(RpcRequest.class)); // 编码 RPC 请求
-                    pipeline.addLast(new RpcDecoder(RpcRequest.class)); // 解码 RPC 请求
+                    pipeline.addLast(new RpcDecoder(RpcResponse.class)); // 解码 RPC 请求
                     pipeline.addLast(RpcClient.this); // 处理 RPC 响应
                 }
             });

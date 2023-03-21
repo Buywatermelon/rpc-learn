@@ -1,11 +1,9 @@
 package com.github.watermelon.sample.api;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 public class Person implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = -1L;
 
     private String firstName;

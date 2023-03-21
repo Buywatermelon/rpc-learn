@@ -28,8 +28,6 @@ public class RpcProxy {
         this.serviceDiscovery = serviceDiscovery;
     }
 
-
-
     public <T> T create(final Class<?> interfaceClass) {
         return create(interfaceClass, "");
     }
