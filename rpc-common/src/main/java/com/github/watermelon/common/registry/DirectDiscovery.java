@@ -4,6 +4,12 @@ import com.github.watermelon.registry.ServiceDiscovery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 本地直连 服务发现
+ *
+ * @author watermelon
+ * @since 1.0.0
+ */
 public class DirectDiscovery implements ServiceDiscovery {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DirectDiscovery.class);
