@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Proxy;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -22,7 +23,11 @@ public class RpcProxy {
 
     private String serviceAddress;
 
-    private final ServiceDiscovery serviceDiscovery;
+    private ServiceDiscovery serviceDiscovery;
+
+    public RpcProxy(String serviceAddress) {
+        this.serviceAddress = serviceAddress;
+    }
 
     public RpcProxy(ServiceDiscovery serviceDiscovery) {
         this.serviceDiscovery = serviceDiscovery;
@@ -73,6 +78,9 @@ public class RpcProxy {
                     }
                     // 返回 RPC 响应结果
                     if (response.hasException()) {
+                        return response.getException();
+                    } else if (!Objects.equals(response.getRequestId(), request.getRequestId())) {
+                        response.setException(new RuntimeException("requestId error"));
                         return response.getException();
                     } else {
                         return response.getResult();

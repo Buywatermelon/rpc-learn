@@ -11,8 +11,7 @@
 
     <context:property-placeholder location="classpath:rpc.properties"/>
 
-    <bean id="serviceRegistry" class="com.github.watermelon.registry.zookeeper.ZooKeeperServiceRegistry">
-        <constructor-arg name="zkAddress" value="${rpc.registry_address}"/>
+    <bean id="serviceRegistry" class="com.github.watermelon.common.registry.DirectRegistry">
     </bean>
 
     <bean id="rpcServer" class="com.github.watermelon.server.RpcServer">

@@ -55,7 +55,7 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
         }
         Object serviceBean = handlerMap.get(serviceName);
         if (serviceBean == null) {
-            throw new RuntimeException(String.format("can not find service bean by ke : %s", serviceName));
+            throw new RuntimeException(String.format("can not find service bean by key : %s", serviceName));
         }
         // 获取反射调用所需的参数
         Class<?> serviceClass = serviceBean.getClass();

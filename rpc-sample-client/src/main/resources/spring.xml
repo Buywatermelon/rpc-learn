@@ -9,8 +9,8 @@
 
     <context:property-placeholder location="classpath:rpc.properties"/>
 
-    <bean id="serviceDiscovery" class="com.github.watermelon.registry.zookeeper.ZooKeeperServiceDiscovery">
-        <constructor-arg name="zkAddress" value="${rpc.registry_address}"/>
+    <bean id="serviceDiscovery" class="com.github.watermelon.common.registry.DirectDiscovery">
+        <constructor-arg name="serverAddress" value="${rpc.service_address}"/>
     </bean>
 
     <bean id="rpcProxy" class="com.github.watermelon.client.RpcProxy">

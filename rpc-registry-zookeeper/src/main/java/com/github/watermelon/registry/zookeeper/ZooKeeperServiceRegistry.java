@@ -9,6 +9,8 @@ import static com.github.watermelon.registry.zookeeper.Constant.ZK_CONNECTION_TI
 import static com.github.watermelon.registry.zookeeper.Constant.ZK_SESSION_TIMEOUT;
 
 /**
+ * ZooKeeper 服务注册
+ *
  * @author watermelon
  * @since 1.0.0
  */
