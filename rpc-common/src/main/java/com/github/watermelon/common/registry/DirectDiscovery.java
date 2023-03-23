@@ -4,6 +4,9 @@ import com.github.watermelon.registry.ServiceDiscovery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * 本地直连 服务发现
  *
@@ -21,9 +24,9 @@ public class DirectDiscovery implements ServiceDiscovery {
     }
 
     @Override
-    public String discover(String serviceName) {
+    public List<String> discover(String serviceName) {
         LOGGER.debug("discovery service {} address: {}", serviceName, serverAddress);
 
-        return serverAddress;
+        return Collections.singletonList(serverAddress);
     }
 }

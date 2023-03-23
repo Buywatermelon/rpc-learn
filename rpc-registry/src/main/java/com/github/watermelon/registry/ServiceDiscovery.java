@@ -1,5 +1,7 @@
 package com.github.watermelon.registry;
 
+import java.util.List;
+
 /**
  * 服务发现接口
  *
@@ -13,5 +15,5 @@ public interface ServiceDiscovery {
      *
      * @param serviceName 服务名称
      */
-    String discover(String serviceName);
+    List<String> discover(String serviceName);
 }

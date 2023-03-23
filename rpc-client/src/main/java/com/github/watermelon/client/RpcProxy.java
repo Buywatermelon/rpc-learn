@@ -1,5 +1,6 @@
 package com.github.watermelon.client;
 
+import com.github.watermelon.common.loadbalance.LoadBalance;
 import com.github.watermelon.registry.ServiceDiscovery;
 import com.github.watermelon.common.bean.RpcRequest;
 import com.github.watermelon.common.bean.RpcResponse;
@@ -24,6 +25,8 @@ public class RpcProxy {
     private String serviceAddress;
 
     private ServiceDiscovery serviceDiscovery;
+
+    private LoadBalance loadBalance;
 
     public RpcProxy(String serviceAddress) {
         this.serviceAddress = serviceAddress;
@@ -58,7 +61,7 @@ public class RpcProxy {
                         if (StringUtils.isNotEmpty(serviceVersion)) {
                             serviceName += "-" + serviceVersion;
                         }
-                        serviceAddress = serviceDiscovery.discover(serviceName);
+                        serviceAddress = loadBalance.select(serviceDiscovery.discover(serviceName), request);
                         LOGGER.debug("discover service: {} => {}", serviceName, serviceAddress);
                     }
                     if (StringUtils.isEmpty(serviceAddress)) {
