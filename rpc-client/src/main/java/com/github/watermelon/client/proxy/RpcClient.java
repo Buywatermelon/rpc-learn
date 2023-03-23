@@ -1,4 +1,4 @@
-package com.github.watermelon.client;
+package com.github.watermelon.client.proxy;
 
 import com.github.watermelon.common.bean.RpcRequest;
 import com.github.watermelon.common.bean.RpcResponse;

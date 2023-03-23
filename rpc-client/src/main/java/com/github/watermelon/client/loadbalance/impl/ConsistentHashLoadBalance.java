@@ -1,5 +1,6 @@
-package com.github.watermelon.common.loadbalance;
+package com.github.watermelon.client.loadbalance.impl;
 
+import com.github.watermelon.client.loadbalance.LoadBalance;
 import com.github.watermelon.common.bean.RpcRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

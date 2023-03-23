@@ -1,6 +1,6 @@
 package com.github.watermelom.sample.client;
 
-import com.github.watermelon.client.RpcProxy;
+import com.github.watermelon.client.proxy.RpcProxy;
 import com.github.watermelon.sample.api.HelloService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

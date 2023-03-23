@@ -1,4 +1,4 @@
-package com.github.watermelon.common.loadbalance;
+package com.github.watermelon.client.loadbalance;
 
 import com.github.watermelon.common.bean.RpcRequest;
 

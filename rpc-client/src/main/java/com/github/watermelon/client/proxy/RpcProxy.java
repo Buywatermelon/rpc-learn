@@ -1,6 +1,6 @@
-package com.github.watermelon.client;
+package com.github.watermelon.client.proxy;
 
-import com.github.watermelon.common.loadbalance.LoadBalance;
+import com.github.watermelon.client.loadbalance.LoadBalance;
 import com.github.watermelon.registry.ServiceDiscovery;
 import com.github.watermelon.common.bean.RpcRequest;
 import com.github.watermelon.common.bean.RpcResponse;
