@@ -1,6 +1,5 @@
 package com.github.watermelon.registry.zookeeper;
 
-import com.github.watermelon.common.loadbalance.LoadBalance;
 import com.github.watermelon.registry.ServiceDiscovery;
 import org.I0Itec.zkclient.ZkClient;
 import org.slf4j.Logger;
@@ -20,11 +19,9 @@ public class ZooKeeperServiceDiscovery implements ServiceDiscovery {
 
     private final String zkAddress;
 
-    private final LoadBalance loadBalance;
 
-    public ZooKeeperServiceDiscovery(String zkAddress, LoadBalance loadBalance) {
+    public ZooKeeperServiceDiscovery(String zkAddress) {
         this.zkAddress = zkAddress;
-        this.loadBalance = loadBalance;
     }
 
     @Override
