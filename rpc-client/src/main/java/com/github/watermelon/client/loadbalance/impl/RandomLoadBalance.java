@@ -37,6 +37,6 @@ public class RandomLoadBalance implements LoadBalance {
             LOGGER.debug("get random address node: {}", address);
         }
 
-        return null;
+        return address;
     }
 }

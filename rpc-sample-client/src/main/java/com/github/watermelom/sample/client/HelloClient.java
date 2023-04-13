@@ -5,9 +5,11 @@ import com.github.watermelon.sample.api.HelloService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.concurrent.CountDownLatch;
+
 public class HelloClient {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         RpcProxy rpcProxy = context.getBean(RpcProxy.class);
 
@@ -19,6 +21,7 @@ public class HelloClient {
         String result2 = helloService2.hello("世界");
         System.out.println(result2);
 
-        System.exit(0);
+        CountDownLatch latch = new CountDownLatch(1);
+        latch.await();
     }
 }

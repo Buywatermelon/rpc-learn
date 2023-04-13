@@ -32,8 +32,9 @@ public class RpcProxy {
         this.serviceAddress = serviceAddress;
     }
 
-    public RpcProxy(ServiceDiscovery serviceDiscovery) {
+    public RpcProxy(ServiceDiscovery serviceDiscovery, LoadBalance loadBalance) {
         this.serviceDiscovery = serviceDiscovery;
+        this.loadBalance = loadBalance;
     }
 
     public <T> T create(final Class<?> interfaceClass) {

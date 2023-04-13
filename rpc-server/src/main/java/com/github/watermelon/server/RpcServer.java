@@ -13,6 +13,7 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.timeout.IdleStateHandler;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -73,6 +74,8 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
                 @Override
                 protected void initChannel(SocketChannel channel) throws Exception {
                     ChannelPipeline pipeline = channel.pipeline();
+                    pipeline.addLast(new IdleStateHandler(3, 5, 10)); // 空闲检测
+                    pipeline.addLast(new IdleHandler()); // 空闲处理
                     pipeline.addLast(new RpcDecoder(RpcRequest.class)); // 解码 RPC 请求
                     pipeline.addLast(new RpcEncoder(RpcResponse.class)); // 编码 RPC 请求
                     pipeline.addLast(new RpcServerHandler(handlerMap)); // 处理 RPC 请求

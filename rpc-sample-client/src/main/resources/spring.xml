@@ -13,8 +13,11 @@
         <constructor-arg name="serverAddress" value="${rpc.service_address}"/>
     </bean>
 
+    <bean id="loadBalance" class="com.github.watermelon.client.loadbalance.impl.RandomLoadBalance"/>
+
     <bean id="rpcProxy" class="com.github.watermelon.client.proxy.RpcProxy">
         <constructor-arg name="serviceDiscovery" ref="serviceDiscovery"/>
+        <constructor-arg name="loadBalance" ref="loadBalance"/>
     </bean>
 
 </beans>

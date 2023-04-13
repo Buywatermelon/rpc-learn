@@ -12,6 +12,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.CountDownLatch;
+
 public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RpcClient.class);
@@ -22,6 +24,8 @@ public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {
 
     private RpcResponse response;
 
+    private CountDownLatch latch = new CountDownLatch(1);
+
     public RpcClient(String host, int port) {
         this.host = host;
         this.port = port;
@@ -30,6 +34,7 @@ public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RpcResponse response) {
         this.response = response;
+        latch.countDown();
     }
 
     @Override
@@ -60,7 +65,7 @@ public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {
             // 写入 RPC 请求数据并关闭连接
             Channel channel = future.channel();
             channel.writeAndFlush(request).sync();
-            channel.closeFuture().sync();
+            latch.await();
             // 返回 RPC 响应对象
             return response;
         } finally {
