@@ -42,7 +42,7 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
             LOGGER.error("handler result failure", e);
             response.setException(e);
         }
-        // 写入 RPC 响应对象并自动关闭连接
+        // 写入 RPC 响应对象
         ctx.writeAndFlush(response).sync();
     }
 
