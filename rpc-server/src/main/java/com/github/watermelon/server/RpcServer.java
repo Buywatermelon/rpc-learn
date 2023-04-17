@@ -1,5 +1,6 @@
 package com.github.watermelon.server;
 
+import com.github.watermelon.common.idle.ServerHeartbeatHandler;
 import com.github.watermelon.registry.ServiceRegistry;
 import com.github.watermelon.common.bean.RpcRequest;
 import com.github.watermelon.common.bean.RpcResponse;
@@ -74,8 +75,8 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
                 @Override
                 protected void initChannel(SocketChannel channel) throws Exception {
                     ChannelPipeline pipeline = channel.pipeline();
-                    pipeline.addLast(new IdleStateHandler(3, 5, 10)); // 空闲检测
-                    pipeline.addLast(new IdleHandler()); // 空闲处理
+                    pipeline.addLast(new IdleStateHandler(0, 0, 20)); // 空闲检测
+                    pipeline.addLast(new ServerHeartbeatHandler()); // 心跳处理
                     pipeline.addLast(new RpcDecoder(RpcRequest.class)); // 解码 RPC 请求
                     pipeline.addLast(new RpcEncoder(RpcResponse.class)); // 编码 RPC 请求
                     pipeline.addLast(new RpcServerHandler(handlerMap)); // 处理 RPC 请求
